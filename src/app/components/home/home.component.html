@@ -1,0 +1,77 @@
+<div class="container mt-5">
+    <h1 class="text-center">Welcome, {{ username }}!</h1>
+
+    <h2 class="mt-4">List car</h2>
+
+    <!-- Search Form -->
+    <div>
+        <form [formGroup]="searchForm" (ngSubmit)="searchCars()">
+            <div class="form-row">
+                <div class="form-group col-md-2">
+                    <label for="searchName">Name</label>
+                    <input type="text" class="form-control" id="searchName" formControlName="name"
+                        placeholder="Enter name">
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="searchBrand">Brand</label>
+                    <input type="text" class="form-control" id="searchBrand" formControlName="brand"
+                        placeholder="Enter brand">
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="searchColor">Color</label>
+                    <input type="text" class="form-control" id="searchColor" formControlName="color"
+                        placeholder="Enter color">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="startDate">Start Date</label>
+                    <input type="date" class="form-control" id="startDate" formControlName="startDate">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="endDate">End Date</label>
+                    <input type="date" class="form-control" id="endDate" formControlName="endDate">
+                </div>
+                <div class="form-group col-md-12 mt-2">
+                    <button class="btn btn-primary" type="submit">Search</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Sort Dropdown -->
+    <div class="form-row mt-3">
+        <div class="form-group col-md-3">
+            <label for="sort">Sort By:</label>
+            <select id="sort" class="form-control" (change)="changeSort($event)">
+                <option value="name">Name</option>
+                <option value="brand">Brand</option>
+                <option value="color">Color</option>
+                <option value="dateBooking">Date booking</option>
+            </select>
+        </div>
+    </div>
+
+    <table class="table table-bordered table-striped mt-3">
+        <thead class="thead-light">
+            <tr>
+                <th>Name</th>
+                <th>Brand</th>
+                <th>Color</th>
+                <th>Date booking</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let car of cars">
+                <td>{{ car.name }}</td>
+                <td>{{ car.brand }}</td>
+                <td>{{ car.color }}</td>
+                <td>{{ car.dateBooking }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="d-flex justify-content-center align-items-center mt-4">
+        <button class="btn btn-primary" (click)="previousPage()" [disabled]="pageNo === 1">Previous</button>
+        <span>Page {{ pageNo }} of {{ totalPages }}</span>
+        <button class="btn btn-primary" (click)="nextPage()" [disabled]="pageNo >= totalPages">Next</button>
+    </div>
+</div>

@@ -1,0 +1,26 @@
+<div class="container">
+    <h1>Angular Web App</h1>
+    <ul class="nav nav-pills card-header-pills">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/">Home</a>
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          *ngIf="!isLoggedIn()"
+          routerLink="/login"
+        >
+          Login
+        </a>
+        <a
+          class="nav-link"
+          *ngIf="isLoggedIn()"
+          (click)="logout()"
+        >
+          Logout
+        </a>
+      </li>
+    </ul>
+    <router-outlet></router-outlet>
+  </div>
+  

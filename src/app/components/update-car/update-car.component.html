@@ -1,0 +1,39 @@
+<div class="container">
+    <form class="sign-in-form" [formGroup]="updateForm" (ngSubmit)="onSubmit()" autocomplete="off">
+      <h2>Update Car Information</h2>
+      <div class="row-control">
+        <mat-form-field appearance="outline">
+          <mat-label>Name</mat-label>
+          <input matInput placeholder="Name" formControlName="name"/>
+        </mat-form-field>
+        <small style="color: red;" *ngIf="updateForm.get('name')?.errors?.['required']">Name is required.</small>
+      </div>
+      <div class="row-control">
+        <mat-form-field appearance="outline">
+          <mat-label>Brand</mat-label>
+          <input matInput placeholder="Brand" formControlName="brand"/>
+        </mat-form-field>
+        <small style="color: red;" *ngIf="updateForm.get('brand')?.errors?.['required']">Brand is required.</small>
+      </div>
+      <div class="row-control">
+        <mat-form-field appearance="outline">
+          <mat-label>Color</mat-label>
+          <input matInput placeholder="Color" formControlName="color"/>
+        </mat-form-field>
+        <small style="color: red;" *ngIf="updateForm.get('color')?.errors?.['required'] ">Color is required.</small>
+      </div>
+      <div class="row-control">
+        <mat-form-field appearance="outline">
+          <mat-label>Date Booking</mat-label>
+          <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="dateBooking"/>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <small style="color: red;" *ngIf="updateForm.get('dateBooking')?.errors?.['required'] ">Date Booking is required.</small>
+      </div>
+      <div class="row-control row-actions">
+        <button mat-raised-button color="primary" type="submit">Update Car</button>
+      </div>
+      <pre>{{ updateForm.value | json }}</pre>
+    </form>
+</div>

@@ -1,0 +1,32 @@
+<div class="container">
+  <form class="sign-in-form" [formGroup]="loginForm" autocomplete="off" (ngSubmit)="login()">
+    <h2>Sign in</h2>
+    <div class="row-control">
+      <mat-form-field appearance="outline">
+        <mat-label>Username</mat-label>
+        <input matInput placeholder="Username" formControlName="username" />
+      </mat-form-field>
+      <small style="color: red;" *ngIf="loginForm.get('username')?.errors?.['required']">
+        Username is required.
+      </small>
+    </div>
+    <div class="row-control">
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input type="password" matInput placeholder="Password" formControlName="password" />
+      </mat-form-field>
+      <small style="color: red;" *ngIf="loginForm.get('password')?.errors?.['required']">
+        Password is required.
+      </small>
+    </div>
+
+    <!-- Bootstrap button row with spacing -->
+    <div class="row-control row-actions">
+      <button mat-raised-button color="primary" type="submit" class="btn btn-primary me-2">Sign in</button>
+      <button mat-raised-button color="primary" type="button" class="btn btn-primary me-2" (click)="autoClick()">Auto</button>
+      <button mat-raised-button color="warn" type="button" class="btn btn-danger" (click)="navigateSignup()">Sign Up</button>
+    </div>
+
+    <pre>{{ loginForm.value | json }}</pre>
+  </form>
+</div>

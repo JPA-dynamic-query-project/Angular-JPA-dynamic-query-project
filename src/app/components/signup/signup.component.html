@@ -1,0 +1,30 @@
+<div class="container">
+    <form class="sign-in-form" [formGroup]="signupForm" autocomplete="off" (ngSubmit)="signup()">
+      <h2>Sign up</h2>
+      <div class="row-control">
+        <mat-form-field appearance="outline">
+          <mat-label>Username</mat-label>
+          <input matInput placeholder="Username" formControlName="username"/>
+        </mat-form-field>
+        <small style="color: red;" *ngIf="signupForm.get('username')?.errors?.['required']">Username is required.</small>
+      </div>
+      <div class="row-control">
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput placeholder="Email" formControlName="email"/>
+        </mat-form-field>
+        <small style="color: red;" *ngIf="signupForm.get('email')?.errors?.['required']">Email is required.</small>
+      </div>
+      <div class="row-control">
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input type="password" matInput placeholder="Password" formControlName="password"/>
+        </mat-form-field>
+        <small style="color: red;" *ngIf="signupForm.get('password')?.errors?.['required'] ">Password is required.</small>
+      </div>
+      <div class="row-control row-actions">
+        <button mat-raised-button color="primary" type="submit">Sign up</button>
+      </div>
+      <pre>{{ signupForm.value | json }}</pre>
+    </form>
+  </div>
